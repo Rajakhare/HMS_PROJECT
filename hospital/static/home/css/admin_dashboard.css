@@ -1,0 +1,88 @@
+body {
+     font-family: sans-serif;
+     background-color: whitesmoke; /* Light gray background */
+ }
+ 
+ .wrapper {
+     display: flex;
+     width: 100%;
+     align-items: stretch;
+ }
+ 
+ #sidebar {
+     min-width: 250px;
+     max-width: 250px;
+     background: lightslategray; /* Darker sidebar */
+     color: white;
+     transition: all 0.3s;
+ }
+ 
+ #sidebar.active {
+     margin-left: -250px;
+ }
+ 
+ #sidebar .sidebar-header {
+     padding: 20px;
+     background: lightslategray; /* Even darker sidebar header */
+ }
+ 
+ #sidebar ul.components {
+     padding: 20px 0;
+     border-bottom: 1px solid #495057; /* Slightly lighter separator */
+ }
+ 
+ #sidebar ul li a {
+     padding: 10px;
+     font-size: 1.1em;
+     display: block;
+     color: #fff;
+ }
+ 
+ #sidebar ul li a:hover {
+     color: #17a2b8; /* Info color on hover */
+     background: #3f444a; /* Slightly lighter background on hover */
+ }
+ 
+ #content {
+     flex: 1;
+     padding: 20px;
+     transition: all 0.3s;
+ }
+ 
+ #sidebarCollapse {
+     margin-bottom: 20px;
+ }
+ 
+ /* Card styling */
+ .card {
+     margin-bottom: 20px;
+     border: none; /* Remove default border */
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+ }
+ 
+ .card-title {
+     font-weight: bold;
+ }
+ 
+ .card-text {
+     font-size: 1.5em;
+ }
+ 
+ /* Responsive adjustments */
+ @media (max-width: 768px) {
+     #sidebar {
+         margin-left: -250px;
+     }
+     #sidebar.active {
+         margin-left: 0;
+     }
+ 
+     /* Stack cards vertically on smaller screens */
+     .col-md-3 {
+         margin-bottom: 20px;
+     }
+ }
+
+hr{
+     text-decoration: double;
+}

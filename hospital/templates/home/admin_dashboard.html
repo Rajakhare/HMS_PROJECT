@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/admin_dashboard.css' %}">
+
+    <style>
+        body{
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar{
+            width: 250px;
+            background-color: #002042;
+            color: white;
+            height: 100%;
+            padding-top: 20px;
+        }
+
+        .sidebar h3{
+            margin-bottom: 60px;
+        }
+
+        .sidebar a{
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 20px 20px;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover{
+            background-color: #073e49;
+        }
+
+        .content{
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .navbar{
+            text-transform: capitalize;
+            box-shadow: 0 8px 8px rgba(0,0,0,0,1);
+        }
+
+        .navbar a{
+            font-size: 16px;
+            padding: 10px 15px;
+            background-color: #0056b3;
+            color: aliceblue;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .container{
+            margin-top: 50px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .card-body{
+            background-color: white;
+            color: #002042;
+            border-radius: 4px;
+        }
+        .card-body:hover{
+            background-color: #e1e5e9;
+            color: #002042;
+        }
+
+        .row{
+            margin: 40px;
+        }
+
+        .dropdown-menu {
+            background-color: #1A3A5A;
+        }
+        .dropdown-item {
+            color: white;
+        }
+
+        .p{
+            margin-left: 50px;
+            text-transform: capitalize;
+            font-weight: 300;
+            font-size: large;
+            text-decoration: underline;
+        }
+
+        .admin{
+            margin-left: 20px;
+            text-decoration: underline;
+        }
+
+    
+    </style>
+</head>
+<body>
+   
+    <div class="sidebar">
+        <h3 class="admin">Admin</h3>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="{%url 'admindashboard' %}">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Specialization
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'specialization_add' %}">Add Specialization</a></li>
+                    <li><a class="dropdown-item" href="{% url 'specializationlist' %}">View Specialization</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="False">
+                    Appointment
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="">New Appointment</a></li>
+                    <li><a class="dropdown-item" href="#">Approved Appointment</a></li>
+                    <li><a class="dropdown-item" href="#">Cancelled Appointment</a></li>
+                    <li><a class="dropdown-item" href="">All Appointment</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Doctor
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'doctorlist' %}">Doctor List</a></li>
+                    <li><a class="dropdown-item" href="{% url 'doctorsignup' %}">Doctor Register</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Patient
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'patientlist' %}">Patient List</a></li>
+                    <li><a class="dropdown-item" href="{% url 'patientregister' %}">Add Patient</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Report</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <h1 style="color: #002042;">Welcome Admin {{name}} !!</h1>
+                <button class="navbar-toggler" type="button" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="False" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin_logout' %}" class="btn">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav> 
+
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Doctors</h5>
+                        <p class="card-text fs-1">{{doctor_count}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Specialization</h5>
+                        <p class="card-text fs-1">{{specialization_count}}</p>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-6">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+
+                    <h5 class="card-title">Total Patient</h5>
+                    <p class="card-text fs-1">{{patient_count}}</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer align text-center">
+            <p>Hospital Management System.</p>
+        </div>
+    </div>
+    </div>
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'home/js/jquery.js' %}"></script>
+    <script src="{% static 'home/js/popper.js' %}"></script>
+    <script src="{% static 'home/js/admin_dashboard.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

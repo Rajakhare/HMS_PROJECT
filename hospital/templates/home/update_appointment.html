@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Update Appointment</title>
+</head>
+<body>
+     <h2>Update Appointment</h2>
+     <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+              <label for="status">Status</label>
+              {{ form.status }}
+          </div>
+      
+          <div class="mb-3">
+              <label for="remark">Remark</label>
+              {{ form.remark }}
+          </div>
+      
+          <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+      
+</body>
+</html>
